@@ -1,9 +1,9 @@
 import json
-from fastapi import FastAPI
-import uvicorn
+#from fastapi import FastAPI
+#import uvicorn
 from random import randint
 
-app = FastAPI()
+#app = FastAPI()
 FILE = "quotes.json"
 
 def get():
@@ -15,7 +15,7 @@ def get():
     quote = temp_list[random_num]
     print(quote) # changes this
 
-def add_quote():
+def add():
     num_of_quotes = input("How many quotes will you add: ") # changes
     num_of_quotes = int(num_of_quotes)
     temp_list: list = []
@@ -28,7 +28,7 @@ def add_quote():
     with open (FILE, "w") as f:
         json.dump(temp_list, f)
 
-def remove_quote():
+def remove():
     num_of_quotes = input("How many quotes will you remove: ") # changes
     num_of_quotes = int(num_of_quotes)
     temp_list: list = []
@@ -42,9 +42,16 @@ def remove_quote():
         removing_list.append(quote_num)
     removing_list.sort(reverse = True)
     for i in range(len(removing_list)):
-        if 0 <= i >= len(temp_list):
+        if 0 <= removing_list[i] < len(temp_list):
             temp_list.pop(removing_list[i])
     with open (FILE, "w") as f:
         json.dump(temp_list, f)
     
+
+def list():
+    temp_list: list = []
+    with open (FILE, "r") as f:
+        temp_list = json.load(f)
+    print(temp_list) # changes this
+
 
