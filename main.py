@@ -1,6 +1,7 @@
 import json
 from fastapi import FastAPI, HTTPException
 import uvicorn
+import subprocess
 from random import randint
 
 adminkey = "onlyiaddorremove"
@@ -30,6 +31,7 @@ def add(quote: str, admin_key: str):
     with open (FILE, "w") as f:
         json.dump(temp_list, f)
     return{"confirmation": "quotes added successfully"}
+    sync_to_github()
 
 @app.post("/remove/{quote}/{admin_key}")
 def remove(quote: int, admin_key: str):
@@ -44,6 +46,7 @@ def remove(quote: int, admin_key: str):
     with open (FILE, "w") as f:
         json.dump(temp_list, f)
     return{"confirmation": "quotes removed successfully"}
+    sync_to_github()
     
 @app.get("/list")
 def list():
@@ -52,4 +55,7 @@ def list():
         temp_list = json.load(f)
     return{"quotes": temp_list}
 
-
+def sync_to_github():
+    subprocess.run(["git", "add", "quotes.json"])
+    subprocess.run(["git", "commit", "-m","added or removed quotes"])
+    subprocess.run(["git", "push"])
