@@ -31,7 +31,7 @@ def add(quote: str, admin_key: str):
         json.dump(temp_list, f)
     return{"confirmation": "quotes added successfully"}
 
-@app.post("/remove")
+@app.post("/remove/{quote}/{admin_key}")
 def remove(quote: int, admin_key: str):
     if admin_key != adminkey:
         raise HTTPException(status_code=403, detail="Invalid admin key")

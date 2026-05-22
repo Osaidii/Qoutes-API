@@ -19,3 +19,4 @@ This API has 2 main functions that you can call
 Get returns a string with a random quote that is randomized everytime you call on it.  List lists all of the avaible quotes in the database.  
 To call these functions, you can use this url, https://.com/{name of function}  
 It is that simple. Nothing more and nothing less.  
+Just for your info, this API uses FastAPI and Uvicorn libraries, and is hosted on nest.hackclub.com
