@@ -30,8 +30,9 @@ def add(quote: str, admin_key: str):
     temp_list.append(quote)
     with open (FILE, "w") as f:
         json.dump(temp_list, f)
-    return{"confirmation": "quotes added successfully"}
     sync_to_github()
+    return{"confirmation": "quotes added successfully"}
+    
 
 @app.post("/remove/{quote}/{admin_key}")
 def remove(quote: int, admin_key: str):
@@ -45,8 +46,9 @@ def remove(quote: int, admin_key: str):
         temp_list.pop(quote)
     with open (FILE, "w") as f:
         json.dump(temp_list, f)
-    return{"confirmation": "quotes removed successfully"}
     sync_to_github()
+    return{"confirmation": "quotes removed successfully"}
+    
     
 @app.get("/list")
 def list():
