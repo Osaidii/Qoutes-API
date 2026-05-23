@@ -61,3 +61,4 @@ def sync_to_github():
     subprocess.run(["git", "add", "quotes.json"])
     subprocess.run(["git", "commit", "-m","added or removed quotes"])
     subprocess.run(["git", "push"])
+
