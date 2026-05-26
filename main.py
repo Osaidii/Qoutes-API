@@ -9,6 +9,14 @@ adminkey = "onlyiaddorremove"
 app = FastAPI()
 FILE = "quotes.json"
 
+app.middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credientials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/get")
 def get():
     temp_list: list = []
